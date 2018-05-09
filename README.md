@@ -13,14 +13,18 @@ chmod +x /usr/local/bin/docker-compose
 ## Prerequisites
 
 ```
-mkdir /srv/mantis
-cd /srv/mantis
-
 apt-get update && apt-get install -y git
 
-git clone https://gitlab.com/crocandr/docker-mantis.git .
+git clone https://gitlab.com/crocandr/docker-mantis.git /srv/mantis 
 ```
 
+## Run
+
+```
+docker-compose -f /srv/mantis/docker-compose.yml up -d
+```
+
+After the first start wait some minutes (1-5) and after continue with Setup steps.
 
 ## Setup 
 
