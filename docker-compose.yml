@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=SuperSecret
+      - MYSQL_DATABASE=bugtracker
+      - MYSQL_USER=mantisbt
+      - MYSQL_PASSWORD=mantisbt
+    volumes:
+      - './db/data:/var/lib/mysql'
+      - './db/config/utf8.cnf:/etc/mysql/conf.d/utf8.cnf'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: always
+  mantisbt:
+    image: vimagick/mantisbt:latest
+    volumes:
+      - '/etc/localhost:/etc/localhost:ro'
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+    restart: always
